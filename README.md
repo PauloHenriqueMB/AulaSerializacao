@@ -7,7 +7,7 @@
 
 
 
-Implements Serializable irá permitir que objetos da classe Cliente possam ser serializados
+ * Implements Serializable irá permitir que objetos da classe Cliente possam ser serializados
 
  * ENTRE A SERIALIZAÇÃO E DESERIALIZAÇÃO HÁ UM DETERMINANTE O QUE É O TEMPO
  * NESTE TEMPO PODE SURGIR-SE NOVAS VERSÕES DO SOFTWARE DE LEITURA O QUAL DETERMINADA CLASSE
