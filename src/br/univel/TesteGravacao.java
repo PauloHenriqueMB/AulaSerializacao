@@ -1,38 +1,35 @@
 package br.univel;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class TesteGravacao {
-
+	
 	
 	public static void main(String[] args) {
 		
+		Cliente cloriginal = new Cliente();
+		cloriginal.setId(2);
+		cloriginal.setNome("Paulo Barbosa");
 		
-		File file = new File("arquivo.dat");
-		FileInputStream fis;
+		File file = new File("arquivo.dat");//O objeto file aponta para um determinado arquivo (referência) que esteja em uma determinada partição
 		
-		try{
-			fis = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			
-			Cliente clido = (Cliente) ois.readObject();
-			
-			System.out.println("ID: " + clido.getId());
-			System.out.println("NOME: "+ clido.getNome());
+		try (FileOutputStream fos = new FileOutputStream(file); 
+				ObjectOutputStream oos = new ObjectOutputStream(fos)){//A atribuição das variaveis dos recursos dentro dos () define que este sera fechado automaticamente
 
-			ois.close();
-			fis.close();
+			oos.writeObject(cloriginal);//Envia os atributos do objeto 'cloriginal' para o 'oos' e este grava no 'fos'
 			
-		}catch(FileNotFoundException e){
+		}catch(FileNotFoundException e){//Irá mostrar uma excessão caso o arquivo não seja encontrado
+			
 			e.printStackTrace();
-		}catch(IOException e){
+			
+		}catch(IOException e){//Irá mostrar uma excessão caso ocorra alguma objeção na compilação do código
+			
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			
 		}
 		
 	}
